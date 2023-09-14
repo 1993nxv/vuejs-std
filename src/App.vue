@@ -24,8 +24,9 @@
 
   <!--Diretiva v-bind-->
   <div>
-    <img src="https://placehold.co/150x150" 
-         v-bind:alt="imgAlt">
+    <img 
+         v-bind:src="imgSrc" 
+         :alt="imgAlt">
   </div>
 
   
@@ -46,6 +47,7 @@
         lastName: 'Delmondes',
         showName: true,
         accessLevel: 'marketing',
+        imgSrc: 'https://placehold.co/150x150',
         imgAlt: 'Imagem usuario dinamica',
 
         todos: [
