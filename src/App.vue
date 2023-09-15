@@ -30,7 +30,7 @@
   </div>
 
   <!--Diretiva v-model-->
-  <div>
+<div>
     <label for="">Nome:</label> 
     <br>
     <input
@@ -58,8 +58,19 @@
     <br>
     {{ newsLetter }}
 
+    <!--Eventos v-on ou @ -->
+    <div>
+      
+      <button @click="onClick()">
+          Mostrar Hearder
+      </button>
+      
+      <div @mouseover="mouseOver()" @mouseout="mouseOut()">
+          Mouse over
+      </div>
+    </div>
     
-  </div>
+</div>
 
   
 </template>
@@ -81,7 +92,7 @@
         accessLevel: 'marketing',
         imgSrc: 'https://placehold.co/150x150',
         imgAlt: 'Imagem usuario dinamica',
-        nameInput: "Delmondes",
+        nameInput: 'Delmondes',
         sports: '',
         newsLetter: '',
 
@@ -117,6 +128,21 @@
                   "completed": false
                 }
               ]
+      }
+    },
+    methods: {
+      onClick(){
+        //console.log('click');
+        this.showHeader = true
+        return this.showHeader
+      },
+      mouseOver(){
+        console.log('Mouse over');
+        return this.nameInput = 'Mouse over'
+      },
+      mouseOut(){
+        console.log('Mouse out');
+        return this.nameInput = 'Mouse out'
       }
     }
   }
