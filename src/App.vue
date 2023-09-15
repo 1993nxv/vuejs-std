@@ -29,6 +29,38 @@
          :alt="imgAlt">
   </div>
 
+  <!--Diretiva v-model-->
+  <div>
+    <label for="">Nome:</label> 
+    <br>
+    <input
+      v-model="nameInput"
+      type="text"
+    >
+    {{ nameInput }}
+    <br>
+    <br>
+    <select v-model="sports">
+      <option value=""></option>
+      <option value="Futebol">Futebol</option>
+      <option value="Ping Pong">Ping Pong</option>
+      <option value="Jiu-jitsu">Jiu-jitsu</option>
+    </select>
+    {{ sports }}
+    <br>
+    <br>
+    
+    <input type="radio" v-model="newsLetter" value="Sim">
+    Sim
+    
+    <input type="radio" v-model="newsLetter" value="Não">
+    Não
+    <br>
+    {{ newsLetter }}
+
+    
+  </div>
+
   
 </template>
 
@@ -49,6 +81,9 @@
         accessLevel: 'marketing',
         imgSrc: 'https://placehold.co/150x150',
         imgAlt: 'Imagem usuario dinamica',
+        nameInput: "Delmondes",
+        sports: '',
+        newsLetter: '',
 
         todos: [
                 {
