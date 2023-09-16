@@ -16,7 +16,7 @@
   <!--Diretiva v-for-->
   <div 
     class="todos"
-    v-for="obj in todos"
+    v-for="obj in filterTodos"
     v-bind:key="obj.id"
   >
     {{ obj.id }} &#61; {{ obj.title }}
@@ -29,7 +29,7 @@
          :alt="imgAlt">
   </div>
 
-  <!--Diretiva v-model-->
+<!--Diretiva v-model-->
 <div>
     <label for="">Nome:</label> 
     <br>
@@ -57,19 +57,24 @@
     Não
     <br>
     {{ newsLetter }}
-
-    <!--Eventos v-on ou @ -->
-    <div>
+  </div>
+    
+<!--Eventos v-on ou @ -->
+<div>
       
       <button @click="onClick()">
           Mostrar Hearder
       </button>
       
-      <div @mouseover="mouseOver()" @mouseout="mouseOut()">
+      <div @mouseover="mouseOver()" v-on:mouseout="mouseOut()">
           Mouse over
       </div>
-    </div>
+</div>
     
+<!--Propriedade computada (computed)-->
+<div>
+  <br><br>
+  {{ fullName }}
 </div>
 
   
@@ -143,6 +148,14 @@
       mouseOut(){
         console.log('Mouse out');
         return this.nameInput = 'Mouse out'
+      }
+    },
+    computed: {
+      fullName() {
+        return this.name + ' ' + this.lastName
+      },
+      filterTodos() {
+        return this.todos.filter(todos => !todos.completed);
       }
     }
   }
