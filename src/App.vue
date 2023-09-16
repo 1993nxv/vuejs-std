@@ -1,217 +1,61 @@
 <template>
-  
-  <TheHeader v-show="showHeader" />
-
-  <div v-show="showName">
-    Nome: {{ name }} <br>
-    Sobrenome: {{ lastName }}
-  </div>
-  
-  <!--Diretiva v-if v-show-->
-  <div v-if="accessLevel === 'admin'">Dep.: Admin</div>
-  <div v-else-if="accessLevel === 'marketing'">Dep.: Marketing</div>
-  <div v-else>Dep.: User</div>
-  <br>
-
-    <!--Diretiva v-bind-->
-    <div>
-    <img 
-         v-bind:src="imgSrc" 
-         :alt="imgAlt">
-  </div>
-
-<!--Diretiva v-model-->
-<div>
-    <label for="">Nome:</label> 
-    <br>
-    <input
-      v-model="nameInput"
+  <div>
+    <input 
+      v-model="name"
       type="text"
     >
-    {{ nameInput }}
-    <br>
-    <br>
-    <select v-model="sports">
-      <option value=""></option>
-      <option value="Futebol">Futebol</option>
-      <option value="Ping Pong">Ping Pong</option>
-      <option value="Jiu-jitsu">Jiu-jitsu</option>
-    </select>
-    {{ sports }}
-    <br>
-    <br>
-    
-    <input type="radio" v-model="newsLetter" value="Sim">
-    Sim
-    
-    <input type="radio" v-model="newsLetter" value="Não">
-    Não
-    <br>
-    {{ newsLetter }}
-    <br>
-    <br>
+
+    {{ name }}
   </div>
-    
-<!--Eventos v-on ou @ -->
-<div>
-      
-      <button @click="onClick()">
-          Mostrar Hearder
-      </button>
-      
-      <div @mouseover="mouseOver()" v-on:mouseout="mouseOut()">
-          Mouse over
-      </div>
-</div>
-<br><br><br><br><br><br>
-
-<h2>Todos em aberto: </h2>
-  <!--Diretiva v-for-->
-  <div 
-    class="todos"
-    v-for="obj in filterTodosEmAberto"
-    v-bind:key="obj.id"
-  >
-    {{ obj.id }} &#61; {{ obj.title }}
-  </div>
-
-  <br>
-  <h2>Todos completas: </h2>
-
-  <div 
-    class="todos"
-    v-for="obj in filterTodosCompletas"
-    v-bind:key="obj.id"
-  >
-    {{ obj.id }} &#61; {{ obj.title }}
-  </div>
-
-  <br>
-
-  <h2>Checklist Todos:</h2>
-    <div 
-    v-for="obj in todos"
-    v-bind:key="obj.id"
-  >
-    <input 
-          v-model="obj.completed"
-          type="checkbox"
-          
-    >
-    {{ obj.title }}
-  </div>
-
-    
-<!--Propriedade computada (computed)-->
-<div>
-  <br><br>
-  <!--{{ fullName }}-->
-</div>
-
-  
 </template>
 
 <script>
-  import TheHeader from './components/TheHeader.vue'
 
   export default {
+    
     name: 'App',
-    components: {
-      TheHeader
-    },
-    data(){
-      return { 
-        showHeader: false,
-        name: 'Wellington',
-        lastName: 'Delmondes',
-        showName: true,
-        accessLevel: 'admin',
-        imgSrc: 'https://placehold.co/150x150',
-        imgAlt: 'Imagem usuario dinamica',
-        nameInput: 'Delmondes',
-        sports: '',
-        newsLetter: '',
 
-        todos: [
-                {
-                  "userId": 1,
-                  "id": 1,
-                  "title": "delectus aut autem",
-                  "completed": false
-                },
-                {
-                  "userId": 1,
-                  "id": 2,
-                  "title": "quis ut nam facilis et officia qui",
-                  "completed": false
-                },
-                {
-                  "userId": 1,
-                  "id": 3,
-                  "title": "fugiat veniam minus",
-                  "completed": false
-                },
-                {
-                  "userId": 1,
-                  "id": 4,
-                  "title": "et porro tempora",
-                  "completed": true
-                },
-                {
-                  "userId": 1,
-                  "id": 5,
-                  "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
-                  "completed": false
-                }
-              ]
+    data()
+    {
+      return {
+        name : ''
+      }
+    
+    },
+    watch: {
+      name(newValue) {
+          if (newValue.length >= 4){
+            this.SaveNewName(newValue)
+          }
       }
     },
     methods: {
-      onClick(){
-        //console.log('click');
-        this.showHeader = true
-        return this.showHeader
-      },
-      mouseOver(){
-        console.log('Mouse over');
-        return this.nameInput = 'Mouse over'
-      },
-      mouseOut(){
-        console.log('Mouse out');
-        return this.nameInput = 'Mouse out'
+      SaveNewName(newValue){
+        console.log('Ajax')
+        console.log(newValue)
       }
     },
-    computed: {
-      fullName() {
-        return this.name + ' ' + this.lastName
-      },
-      filterTodosEmAberto() {
-        return this.todos.filter(todo => !todo.completed);
-      },
-      filterTodosCompletas() {
-        return this.todos.filter(todo => todo.completed);
-      }
-    }
+    computed: {}
   }
+
 </script>
 
 <style>
+
   #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: left;
-    color: #2c3e50;
-    margin-top: 60px;
+    padding-top: 150px;
+    margin-left: 150px;
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #29292922;
+
   }
-  .todos{
+  input {
+    border-radius: 3px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     height: 40px;
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    text-align: left;
-    padding-top: 20px;
-    margin: 10px;
-    padding-left: 30px;
-    background-color: #222222;
-    color: white;
+    width: 300px;
+    font-size: 30px;
   }
+
 </style>
