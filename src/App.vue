@@ -1,61 +1,91 @@
 <template>
   <div>
-    <input 
-      v-model="name"
-      type="text"
-    >
+      <TheHeader v-if="showHeader" />
+      <h1>Hello World</h1>
+      <br>
+      <input
+          v-model="name"
+          type="text"
+      >
+      {{ name }} <br>
 
-    {{ name }}
+      <button @click="showHeader = !showHeader">
+          Ativar e desativar header
+      </button>
   </div>
 </template>
 
 <script>
-
-  export default {
-    
-    name: 'App',
-
-    data()
-    {
+import TheHeader from '@/components/TheHeader';
+export default {
+  name: 'App',
+  components: { TheHeader },
+  data() {
       return {
-        name : ''
+          name: 'Jon Snow',
+          showHeader: true,
       }
-    
-    },
-    watch: {
-      name(newValue) {
-          if (newValue.length >= 4){
-            this.SaveNewName(newValue)
-          }
-      }
-    },
-    methods: {
-      SaveNewName(newValue){
-        console.log('Ajax')
-        console.log(newValue)
-      }
-    },
-    computed: {}
-  }
+  },
+  // Criação
+      // Preparar o componente
+      // Ajax, inicializar algumas variáveis
+      // Não tem acesso ao template (DOM)
+  // Montagem
+      // Inicializar um lib externa (new Lib())
+      // Precisa de acesso ao template (DOM)
+      // Tem acesso ao template (DOM)
+  // Atualização
+      // Debug
+      // Update
+  // Desmontagem
+      // Remover tudo o que for ncessário (lib->destroy())
+      // para liberar memória
 
+  // HOOKS
+  // beforeUpdate() {
+  //     console.log('beforeUpdate', this.name);
+  // },
+  // updated() {
+  //     console.log('updated', this.name);
+  // },
+  // beforeCreate() {
+  //     console.log('beforeCreate');
+  //     console.log('Estado:', this.name);
+  //     console.log('DOM:', this.$el);
+  // },
+  // created() {
+  //     console.log('created');
+  //     console.log('Estado:', this.name);
+  //     console.log('DOM:', this.$el);
+  // },
+  // beforeMount() {
+  //     console.log('beforeMount');
+  //     console.log('Estado:', this.name);
+  //     console.log('DOM:', this.$el);
+  // },
+  // mounted() {
+  //     console.log('mounted');
+  //     console.log('Estado:', this.name);
+  //     console.log('DOM:', this.$el);
+  // },
+
+  watch: {
+  },
+
+  computed: {
+  },
+
+  methods: {
+  }
+}
 </script>
 
 <style>
-
-  #app {
-    padding-top: 150px;
-    margin-left: 150px;
-    font-size: 30px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: #29292922;
-
-  }
-  input {
-    border-radius: 3px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    height: 40px;
-    width: 300px;
-    font-size: 30px;
-  }
-
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  margin: 60px;
+}
 </style>
