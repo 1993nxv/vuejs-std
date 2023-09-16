@@ -13,17 +13,8 @@
   <div v-else>Dep.: User</div>
   <br>
 
-  <!--Diretiva v-for-->
-  <div 
-    class="todos"
-    v-for="obj in filterTodos"
-    v-bind:key="obj.id"
-  >
-    {{ obj.id }} &#61; {{ obj.title }}
-  </div>
-
-  <!--Diretiva v-bind-->
-  <div>
+    <!--Diretiva v-bind-->
+    <div>
     <img 
          v-bind:src="imgSrc" 
          :alt="imgAlt">
@@ -57,6 +48,8 @@
     Não
     <br>
     {{ newsLetter }}
+    <br>
+    <br>
   </div>
     
 <!--Eventos v-on ou @ -->
@@ -70,11 +63,49 @@
           Mouse over
       </div>
 </div>
+<br><br><br><br><br><br>
+
+<h2>Todos em aberto: </h2>
+  <!--Diretiva v-for-->
+  <div 
+    class="todos"
+    v-for="obj in filterTodosEmAberto"
+    v-bind:key="obj.id"
+  >
+    {{ obj.id }} &#61; {{ obj.title }}
+  </div>
+
+  <br>
+  <h2>Todos completas: </h2>
+
+  <div 
+    class="todos"
+    v-for="obj in filterTodosCompletas"
+    v-bind:key="obj.id"
+  >
+    {{ obj.id }} &#61; {{ obj.title }}
+  </div>
+
+  <br>
+
+  <h2>Checklist Todos:</h2>
+    <div 
+    v-for="obj in todos"
+    v-bind:key="obj.id"
+  >
+    <input 
+          v-model="obj.completed"
+          type="checkbox"
+          
+    >
+    {{ obj.title }}
+  </div>
+
     
 <!--Propriedade computada (computed)-->
 <div>
   <br><br>
-  {{ fullName }}
+  <!--{{ fullName }}-->
 </div>
 
   
@@ -94,7 +125,7 @@
         name: 'Wellington',
         lastName: 'Delmondes',
         showName: true,
-        accessLevel: 'marketing',
+        accessLevel: 'admin',
         imgSrc: 'https://placehold.co/150x150',
         imgAlt: 'Imagem usuario dinamica',
         nameInput: 'Delmondes',
@@ -154,8 +185,11 @@
       fullName() {
         return this.name + ' ' + this.lastName
       },
-      filterTodos() {
-        return this.todos.filter(todos => !todos.completed);
+      filterTodosEmAberto() {
+        return this.todos.filter(todo => !todo.completed);
+      },
+      filterTodosCompletas() {
+        return this.todos.filter(todo => todo.completed);
       }
     }
   }
@@ -166,7 +200,7 @@
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
+    text-align: left;
     color: #2c3e50;
     margin-top: 60px;
   }
