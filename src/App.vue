@@ -1,7 +1,9 @@
 <template>
   <div>
       <BaseAlert
+          v-if="showAlert"
           :variant="variant"
+          @close="onClose()"
       >
           {{ text }}
       </BaseAlert>
@@ -15,6 +17,7 @@ export default {
   components: { BaseAlert },
   data() {
       return {
+          showAlert: true,
           variant: 'danger',
           text: 'Seu formulário não foi enviado'
       }
@@ -27,7 +30,13 @@ export default {
   mounted() {},
   watch: {},
   computed: {},
-  methods: {}
+  methods: {
+    onClose(){
+      console.log('on close')
+      return this.showAlert = false
+      
+    }
+  }
 }
 </script>
 
