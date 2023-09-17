@@ -34,7 +34,6 @@ export default {
     onClose(){
       console.log('on close')
       return this.showAlert = false
-      
     }
   }
 }
