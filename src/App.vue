@@ -1,21 +1,22 @@
 <template>
   <div>
-      <div class="card">
-          Teste
-      </div>
-      <BaseCard />
-      <br>
-      <BaseCard />
+      <BaseAlert
+          :variant="variant"
+      >
+          {{ text }}
+      </BaseAlert>
   </div>
 </template>
 
 <script>
-import BaseCard from '@/components/BaseCard';
+import BaseAlert from '@/components/BaseAlert';
 export default {
   name: 'App',
-  components: { BaseCard },
+  components: { BaseAlert },
   data() {
       return {
+          variant: 'danger',
+          text: 'Seu formulário não foi enviado'
       }
   },
   beforeUpdate() {},
